@@ -28,7 +28,7 @@ body = {
 
 
 def main():   
-    global p
+    global p1
     #  Load the plugins from the plugin directory.
     manager = PluginManager()
     manager.setPluginPlaces(["plugins"])
@@ -36,7 +36,7 @@ def main():
     # Loop round the plugins and print their names.
     for plugin in manager.getAllPlugins():
         print("==========>  ",format(plugin.plugin_object))
-        p="C:\Python34\directory1"
+        #p="C:\Python34\directory1"
         #print("path is:======>",p)
         p1=plugin.plugin_object.print_name()
         print(p1) 
@@ -48,8 +48,8 @@ if __name__ == "__main__":
     main()
 
 
-glob.glob(p)
-os.chdir(p) 
+glob.glob(p1)
+os.chdir(p1) 
 for file in glob.glob("*.txt"):
         with open(file, 'r') as f:
         	data = base64.b64encode(bytes(f.read(),'utf-8')).decode('ascii');

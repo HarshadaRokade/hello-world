@@ -4,40 +4,43 @@ from xml.etree.ElementTree import ElementTree
 import xml.etree.ElementTree as ET
 import os,glob,xlrd
 class PluginOne(IPlugin):
-    def __init__(self):
-        self=self
-       
-
-    def print_name(self):
+def __init__(self):
         print("This is plugin 1")
         parser = ConfigParser()
         print(parser.read('C:\Python34\example\c1.ini'))
         print(parser.get('path', 'dirpath'))
-        path=parser.get('path', 'dirpath')     
-        return path
+        path=parser.get('path', 'dirpath')
+        self.filename=path    
+#        return path
+   
+       
+
+def print_name(self):
+    print("This is plugin 1")
+    return self.filename
    
   
-    def convert_from_xml(self):
-        filename="C:\Python34\directory1"
-        f="C:/python34/conversion"
-        print(filename)
-        glob.glob(filename)
-        os.chdir(filename)
-        for file in glob.glob("*.xml"):
-             	        with open(file, 'r') as f:
-                                yield file
-                                tree=ET.parse(file)
-                                doc=ET.tostring(tree.getroot(), encoding='utf-8',method='text')
-                                print("result is",doc)
-                                print("after ",doc.splitlines())
-                                out = open(file + ".txt", "w")
-                                out.write(str(doc))
-                                return True
+def convert_from_xml(self):
+    filename="C:\Python34\dir"
+        #f="C:/python34/conversion"
+    print(filename)
+    glob.glob(filename)
+    os.chdir(filename)
+    for file in glob.glob("*.xml"):
+             with open(file, 'r') as f:
+              yield file
+            tree=ET.parse(file)
+            doc=ET.tostring(tree.getroot(), encoding='utf-8',method='text')
+            print("result is",doc)
+            print("after ",doc.splitlines())
+            out = open(file + ".txt", "w")
+            out.write(str(doc))
+            return True
  
-    def convert_from_xlsx(self):
+def convert_from_xlsx(self):
         #arg="C:/python34/conversion"
         #print("args is==>",arg)    
-        filename="C:\Python34\directory1"
+        #filename="C:\Python34\directory1"
         glob.glob(filename)
         os.chdir(filename)
         print(os)
@@ -49,13 +52,13 @@ class PluginOne(IPlugin):
             print(arr) 
             out=open(file+".txt","w") 
             for sheet in arr:            
-                arr=workbook.sheet_names()
-                sh=workbook.sheet_by_name(sheet)
-                print("row is",sh.nrows)
-                print("column is",sh.ncols)
-                print(sheet)
-                n=0
-                i=0     
+            arr=workbook.sheet_names()
+            sh=workbook.sheet_by_name(sheet)
+            print("row is",sh.nrows)
+            print("column is",sh.ncols)
+            print(sheet)
+            n=0
+            i=0     
                 for n in range(sh.nrows):
                     out.write("\t")
                     for i in range(sh.ncols):
@@ -64,7 +67,7 @@ class PluginOne(IPlugin):
                         out.write(str(data))
                         out.write("\t")
 
-    def generator(self):
+def generator(self):
       #  for i in A.convert_from_xml(self):
        #     print(i)
        # for j in A.convert_from_xlsx(self):
@@ -73,7 +76,7 @@ class PluginOne(IPlugin):
         yield from PluginOne.convert_from_xlsx(self)
 
 
-    def g(self):
+def g(self):
         for i in PluginOne.generator(self):
             print(i)   
 
